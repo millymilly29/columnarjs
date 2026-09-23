@@ -1,0 +1,15 @@
+{
+  "name": "columnarjs",
+  "version": "1.0.0",
+  "description": "In-process columnar analytics engine with HNSW-style TypedArray storage, vectorized aggregation, and SQL-like query API — no WASM, no backend.",
+  "main": "engine/column-store.js",
+  "scripts": {
+    "test": "node tests/columnar.test.js",
+    "demo": "node cli.js demo",
+    "bench": "node cli.js bench"
+  },
+  "keywords": ["columnar", "analytics", "database", "typed-array", "vector", "in-memory"],
+  "author": "Kirill Tsyganov",
+  "license": "MIT",
+  "engines": { "node": ">=18.0.0" }
+}
