@@ -1,0 +1,43 @@
+# columnarjs
+
+> In-process columnar analytics engine powered by TypedArrays (Float64Array / Int32Array) with dictionary encoding and vectorized aggregations. Zero dependencies.
+
+## Architecture & Memory Layout
+
+- **Column Store (`engine/column-store.js`)**: Stores data column-wise in contiguous `TypedArray` buffers rather than JavaScript objects. Strings use a dictionary pool (`pool: string[]`) and store 32-bit integer indexes (`Uint32Array`).
+- **Vector Operations (`engine/vector-ops.js`)**: Unrolled loops executing numeric operations directly on TypedArrays with null-bitmask support (`vecSum`, `vecAvg`, `vecMin`, `vecMax`, `vecCount`, `vecFilter`).
+- **Query Engine (`engine/query-engine.js`)**: Executes `WHERE` filters into a `Uint8Array` selection bitmask, aggregates grouped data using open-addressing hash maps on TypedArray buffers, and handles projection without copying intermediate rows.
+
+## Public API
+
+```javascript
+const { ColumnStore } = require('./engine/column-store');
+const { QueryEngine } = require('./engine/query-engine');
+
+const store = new ColumnStore({
+  schema: {
+    id: 'int',
+    product: 'string',
+    category: 'string',
+    revenue: 'float',
+    qty: 'int'
+  }
+});
+
+// Load rows in batch
+store.loadRows(dataset);
+
+// Vectorized query execution
+const engine = new QueryEngine(store);
+const result = engine.query({
+  select: ['category', 'SUM(revenue)', 'AVG(revenue)', 'COUNT(*)'],
+  where: { region: 'EMEA', revenue: { $gt: 500 } },
+  groupBy: 'category',
+  orderBy: { 'SUM(revenue)': 'DESC' },
+  limit: 10
+});
+```
+
+## Reproducible Benchmark Suite
+
+- `node tests/columnar.test.js`: 28/28 automated verification tests including live 500,000-row GROUP BY benchmarks.
