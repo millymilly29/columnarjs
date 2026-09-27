@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/cover.svg" alt="ColumnarJS — Maison Margiela / Yeezy Archival Specification" width="100%">
+</div>
+
 ```
 COLUMNARJS // 04
 IN-PROCESS TYPEDARRAY COLUMNAR ANALYTICS ENGINE

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .mono { font-family: 'Courier New', Courier, 'JetBrains Mono', monospace; }
+      .sans { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; }
+      .tag-num { font-size: 13px; fill: #666666; letter-spacing: 4px; }
+      .tag-active { font-size: 13px; fill: #FFFFFF; font-weight: bold; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="480" fill="#0C0C0C"/>
+  <rect x="24" y="24" width="1152" height="432" fill="none" stroke="#222222" stroke-width="1"/>
+
+  <!-- Margiela Tag: Circle '04' -->
+  <g transform="translate(780, 60)" class="mono">
+    <text x="0" y="0" class="tag-num">0 1 2 3 <tspan class="tag-active">4</tspan> 5 6 7 8 9</text>
+    <text x="0" y="24" class="tag-num">10 11 12 13 14 15 16 17 18 19</text>
+    <text x="0" y="48" class="tag-num">20 21 22 23</text>
+    <ellipse cx="73" cy="-4" rx="12" ry="11" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+  </g>
+
+  <g transform="translate(60, 68)" class="mono">
+    <text x="0" y="0" fill="#888888" font-size="11" letter-spacing="3">SPECIFICATION 04 // COLUMNAR ANALYTICS ENGINE</text>
+    <text x="0" y="20" fill="#555555" font-size="10" letter-spacing="2">CONTIGUOUS TYPEDARRAY BUFFERS &amp; VECTOR OPS</text>
+  </g>
+
+  <g transform="translate(60, 160)">
+    <text x="0" y="0" fill="#F0F0ED" class="sans" font-size="44" font-weight="700" letter-spacing="2">COLUMNARJS</text>
+    <text x="0" y="32" fill="#777777" class="mono" font-size="13" letter-spacing="4">IN-PROCESS TYPEDARRAY COLUMNAR ENGINE</text>
+  </g>
+
+  <line x1="60" y1="230" x2="1140" y2="230" stroke="#222222" stroke-width="1"/>
+
+  <g transform="translate(60, 275)" class="mono" font-size="12">
+    <g transform="translate(0, 0)">
+      <text x="0" y="0" fill="#555555">500K GROUP BY</text>
+      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">61.0 ms</text>
+      <text x="0" y="52" fill="#888888" font-size="11">7.8x FASTER THAN REDUCE</text>
+    </g>
+
+    <g transform="translate(300, 0)">
+      <text x="0" y="0" fill="#555555">MEMORY LAYOUT</text>
+      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">FLOAT64</text>
+      <text x="0" y="52" fill="#888888" font-size="11">CONTIGUOUS TYPEDARRAYS</text>
+    </g>
+
+    <g transform="translate(600, 0)">
+      <text x="0" y="0" fill="#555555">STRING ENCODING</text>
+      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">UINT32</text>
+      <text x="0" y="52" fill="#888888" font-size="11">DICTIONARY STRING POOL</text>
+    </g>
+
+    <g transform="translate(880, 0)">
+      <text x="0" y="0" fill="#555555">DEPENDENCIES</text>
+      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">NONE (0)</text>
+      <text x="0" y="52" fill="#888888" font-size="11">IN-PROCESS V8 ENGINE</text>
+    </g>
+  </g>
+
+  <g transform="translate(60, 424)" class="mono" font-size="9" fill="#444444" letter-spacing="2">
+    <text x="0" y="0">MODULE: ENGINE/COLUMN-STORE.JS</text>
+    <text x="450" y="0">ALGORITHM: BITMASK FILTER + HASH AGG</text>
+    <text x="880" y="0">VERIFIED: 28/28 PASS</text>
+  </g>
+</svg>
