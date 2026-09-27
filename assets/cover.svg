@@ -1,38 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap');
       .bone-bg { fill: #F2F0EB; }
       .headline {
-        font-family: 'Archivo Black', 'Helvetica Neue', 'Arial Narrow', sans-serif;
-        font-size: 64px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial Narrow', 'Impact', sans-serif;
+        font-size: 72px;
         font-weight: 900;
         letter-spacing: -0.04em;
         text-transform: uppercase;
         fill: #1A1917;
       }
       .mono-label {
-        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
     </style>
   </defs>
 
-  <!-- Flat Bone Background -->
   <rect width="1200" height="630" class="bone-bg"/>
-
-  <!-- Outer Architectural Framing -->
   <rect x="60" y="60" width="1080" height="510" fill="none" stroke="#C8C5BE" stroke-width="1"/>
 
-  <!-- Tag N° 04 (Top Right) with 2px Hard Offset Stamped Shadow -->
-  <g transform="translate(880, 90)">
-    <rect x="2" y="2" width="230" height="38" fill="#1A1917"/>
-    <rect x="0" y="0" width="230" height="38" fill="#FFFFFF" stroke="#1A1917" stroke-width="1"/>
-    <text x="115" y="24" class="mono-label" font-size="11px" font-weight="700" fill="#1A1917" text-anchor="middle">N° 04 — ANALYTICS ENGINE</text>
+  <g transform="translate(860, 90)">
+    <rect x="2" y="2" width="250" height="38" fill="#1A1917"/>
+    <rect x="0" y="0" width="250" height="38" fill="#FFFFFF" stroke="#1A1917" stroke-width="1"/>
+    <text x="125" y="24" class="mono-label" font-size="11px" font-weight="700" fill="#1A1917" text-anchor="middle">N° 04 — ANALYTICS ENGINE</text>
   </g>
 
-  <!-- Column Stratification / Pattern Cut Slabs -->
   <g transform="translate(680, 200)">
     <line x1="0" y1="0" x2="0" y2="200" stroke="#1A1917" stroke-width="1.5"/>
     <line x1="70" y1="0" x2="70" y2="200" stroke="#1A1917" stroke-width="1.5"/>
@@ -53,24 +47,20 @@
     <circle cx="350" cy="150" r="3" fill="#1A1917"/>
   </g>
 
-  <!-- Asymmetric Left-Aligned Headline & Margiela Naming -->
   <g transform="translate(100, 260)">
     <text x="0" y="0" class="mono-label" font-size="13px" font-weight="700" fill="#8A867D">N° 04 — COLUMNAR ANALYTICS</text>
-    <text x="0" y="60" class="headline">COLUMNAR — JS</text>
-    
-    <!-- Fabric Spec Subtext -->
+    <text x="0" y="64" class="headline">COLUMNAR — JS</text>
     <text x="0" y="110" class="mono-label" font-size="12px" fill="#8A867D">
       IN-PROCESS TYPEDARRAY STORAGE &nbsp;·&nbsp; DICTIONARY POOL &nbsp;·&nbsp; VECTOR OPS
     </text>
   </g>
 
-  <!-- Bottom Specification Footer -->
   <g transform="translate(100, 520)">
     <line x1="0" y1="0" x2="1000" y2="0" stroke="#C8C5BE" stroke-width="1"/>
-    <text x="0" y="25" class="mono-label" font-size="10px" fill="#8A867D">
+    <text x="0" y="25" class="mono-label" font-size="11px" fill="#8A867D">
       PERFORMANCE: 500K ROWS IN 61ms &nbsp;·&nbsp; 7.8x FASTER &nbsp;·&nbsp; 0 DEPENDENCIES
     </text>
-    <text x="1000" y="25" class="mono-label" font-size="10px" fill="#8A867D" text-anchor="end">
+    <text x="1000" y="25" class="mono-label" font-size="11px" fill="#8A867D" text-anchor="end">
       TESTS: 28/28 PASS
     </text>
   </g>

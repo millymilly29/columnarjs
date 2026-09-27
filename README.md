@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/cover.svg" alt="N° 04 — COLUMNARJS" width="100%">
+  <img src="assets/cover.png" alt="N° 04 — COLUMNARJS" width="100%">
 </div>
 
 ```
@@ -22,7 +22,7 @@ TESTS         [ TESTS — 28/28 VERIFIED ]
 ### [ 04.1 ] ARCHITECTURAL CONSTRUCTION
 
 <div align="center">
-  <img src="assets/architecture.svg" alt="Pattern Sheet — Columnar Dataflow" width="100%">
+  <img src="assets/architecture.png" alt="Pattern Sheet — Columnar Dataflow" width="100%">
 </div>
 
 ---
