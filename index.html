@@ -301,9 +301,28 @@
         rows = Object.entries(groups).map(([k,v]) => [k, '$' + v.toFixed(2)]);
       } 
       else if (q === 2) {
-        colTime = 18; rowTime = 120; // Simulated sort timing for UI demo speed
+        // Columnar Top 10: scan raw Float64Array buffer maintaining top 10 indices
+        t0 = performance.now();
+        const topIdx = [];
+        for (let i = 0; i < ROWS; i++) {
+          if (topIdx.length < 10) {
+            topIdx.push(i);
+            if (topIdx.length === 10) topIdx.sort((a, b) => store.revenue[a] - store.revenue[b]);
+          } else if (store.revenue[i] > store.revenue[topIdx[0]]) {
+            topIdx[0] = i;
+            topIdx.sort((a, b) => store.revenue[a] - store.revenue[b]);
+          }
+        }
+        topIdx.sort((a, b) => store.revenue[b] - store.revenue[a]);
+        colTime = performance.now() - t0;
+
+        // Row-scan Top 10: full array slice and sort
+        t0 = performance.now();
+        const topRowObjs = rawObjects.slice().sort((a, b) => b.revenue - a.revenue).slice(0, 10);
+        rowTime = performance.now() - t0;
+
         headers = ['ID', 'PRODUCT', 'REVENUE'];
-        rows = rawObjects.slice(0, 10).sort((a,b)=>b.revenue-a.revenue).map(r => [r.id, r.product, '$' + r.revenue.toFixed(2)]);
+        rows = topIdx.map(i => [i + 1, store.product[i], '$' + store.revenue[i].toFixed(2)]);
       }
       else if (q === 3) {
         t0 = performance.now();

@@ -2,8 +2,8 @@
 /**
  * COLUMNARJS // CLI
  * Usage:
- *   node cli.js demo          — run synthetic e-commerce demo
- *   node cli.js bench         — benchmark 1M row aggregation vs Array.reduce
+ *   node cli.js demo          — run synthetic e-commerce demo (500,000 rows)
+ *   node cli.js bench         — benchmark 100K/500K/1M row aggregations vs Array.reduce
  *   node cli.js csv <file>    — load a CSV file and enter query REPL
  */
 
@@ -31,7 +31,7 @@ if (cmd === 'demo') {
   console.log('║  COLUMNARJS  //  E-Commerce Analytics Demo       ║');
   console.log('╚══════════════════════════════════════════════════╝\n');
 
-  const ROWS = 200_000;
+  const ROWS = 500_000;
   const cats = ['Electronics', 'Furniture', 'Clothing', 'Books', 'Sports'];
   const regions = ['EMEA', 'APAC', 'AMER'];
   const prods = ['Keyboard', 'Desk', 'T-Shirt', 'Novel', 'Helmet',
@@ -52,7 +52,7 @@ if (cmd === 'demo') {
   console.log('done.\n');
 
   const store = new ColumnStore();
-  timer('insertBatch(200,000 rows)', () => store.insertBatch(rows));
+  timer(`insertBatch(${ROWS.toLocaleString()} rows)`, () => store.insertBatch(rows));
 
   const qe = new QueryEngine(store);
   console.log('');
@@ -72,7 +72,7 @@ if (cmd === 'demo') {
   console.log('');
   console.log('  Category breakdown:');
   for (const r of q1.rows) {
-    console.log(`    ${r.category.padEnd(14)} $${r.total_revenue.toFixed(2).padStart(12)}   avg qty: ${r.avg_qty.toFixed(1).padStart(5)}   orders: ${r.orders}`);
+    console.log(`    ${r.category.padEnd(14)} $${r.total_revenue.toFixed(2).padStart(14)}   avg qty: ${r.avg_qty.toFixed(1).padStart(5)}   orders: ${r.orders.toLocaleString()}`);
   }
 
   // Q2
@@ -109,28 +109,57 @@ else if (cmd === 'bench') {
   for (const N of N_VALUES) {
     console.log(`  ── ${N.toLocaleString()} rows ──────────────────────────`);
 
+    const cats = ['Electronics', 'Furniture', 'Clothing', 'Books', 'Sports'];
+    const regions = ['EMEA', 'APAC', 'AMER'];
+
     // Build columnar store
     const store = new ColumnStore();
     const rows = [];
     for (let i = 0; i < N; i++) {
-      rows.push({ id: i, revenue: Math.random() * 1000, qty: Math.floor(Math.random() * 20) + 1 });
+      rows.push({
+        id: i,
+        category: cats[i % cats.length],
+        region: regions[i % regions.length],
+        revenue: Math.random() * 1000,
+        qty: Math.floor(Math.random() * 20) + 1
+      });
     }
     store.insertBatch(rows);
     const qe = new QueryEngine(store);
 
     // Columnar SUM
-    const colTime = timer('  Columnar SUM(revenue)', () => qe.agg('SUM', 'revenue'));
+    timer('  Columnar SUM(revenue)', () => qe.agg('SUM', 'revenue'));
 
     // Row-scan SUM (standard JS Array.reduce)
-    const rowTime = timer('  Row-scan Array.reduce', () =>
+    timer('  Row-scan Array.reduce', () =>
       rows.reduce((acc, r) => acc + r.revenue, 0)
     );
 
     // Raw TypedArray loop (theoretical max)
     const revBuf = store._getCol('revenue').buf;
-    timer('  Raw Float64Array loop  ', () => {
+    timer('  Raw Float64Array loop', () => {
       let s = 0; for (let i = 0; i < N; i++) s += revBuf[i]; return s;
     });
+
+    // GROUP BY benchmark on 500K
+    if (N === 500_000) {
+      timer('  GROUP BY category (SUM, AVG)', () =>
+        qe.query({
+          groupBy: 'category',
+          aggregate: [
+            { col: 'revenue', func: 'SUM', as: 'rev' },
+            { col: 'qty', func: 'AVG', as: 'avg_qty' }
+          ]
+        })
+      );
+      timer('  WHERE region=EMEA + ORDER BY + LIMIT', () =>
+        qe.query({
+          where: [{ col: 'region', op: '=', val: 'EMEA' }],
+          orderBy: { col: 'revenue', dir: 'DESC' },
+          limit: 10
+        })
+      );
+    }
 
     console.log('');
   }
