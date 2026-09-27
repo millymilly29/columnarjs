@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .bone-bg { fill: #F2F0EB; }
+      .carbon-line { stroke: #1A1917; stroke-width: 1.5px; fill: none; }
+      .ash-line { stroke: #8A867D; stroke-width: 1px; stroke-dasharray: 4,4; fill: none; }
+      .label-head { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; fill: #1A1917; letter-spacing: 0.08em; text-transform: uppercase; }
+      .label-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A867D; letter-spacing: 0.1em; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="480" class="bone-bg"/>
+
+  <text x="50" y="45" class="label-head">PATTERN SHEET // N° 04 — COLUMNAR DATAFLOW &amp; MEMORY LAYOUT</text>
+  <text x="950" y="45" class="label-tag" text-anchor="end">SPEC: FLOAT64ARRAY · ZERO GC</text>
+  <line x1="50" y1="60" x2="950" y2="60" stroke="#C8C5BE" stroke-width="1"/>
+
+  <!-- Stage 1: Row Ingestion -->
+  <g transform="translate(50, 180)">
+    <path d="M 0,15 L 0,0 L 15,0" class="carbon-line"/>
+    <path d="M 145,80 L 160,80 L 160,65" class="carbon-line"/>
+    <path d="M 160,15 L 160,0 L 145,0" class="carbon-line"/>
+    <path d="M 0,65 L 0,80 L 15,80" class="carbon-line"/>
+
+    <text x="80" y="34" class="label-head" text-anchor="middle">INGESTION</text>
+    <text x="80" y="52" class="label-tag" text-anchor="middle">BATCH OBJECTS</text>
+    <text x="80" y="66" class="label-tag" text-anchor="middle">SCHEMA INFER</text>
+  </g>
+
+  <line x1="210" y1="220" x2="280" y2="220" class="carbon-line"/>
+  <polygon points="280,220 270,215 270,225" fill="#1A1917"/>
+
+  <!-- Stage 2: TypedArray Storage -->
+  <g transform="translate(280, 180)">
+    <path d="M 0,15 L 0,0 L 15,0" class="carbon-line"/>
+    <path d="M 185,80 L 200,80 L 200,65" class="carbon-line"/>
+    <path d="M 200,15 L 200,0 L 185,0" class="carbon-line"/>
+    <path d="M 0,65 L 0,80 L 15,80" class="carbon-line"/>
+
+    <text x="100" y="34" class="label-head" text-anchor="middle">TYPED BUFFERS</text>
+    <text x="100" y="52" class="label-tag" text-anchor="middle">FLOAT64 / INT32</text>
+    <text x="100" y="66" class="label-tag" text-anchor="middle">STRING POOL + UINT32</text>
+  </g>
+
+  <line x1="480" y1="220" x2="550" y2="220" class="carbon-line"/>
+  <polygon points="550,220 540,215 540,225" fill="#1A1917"/>
+
+  <!-- Stage 3: Bitmask Filter -->
+  <g transform="translate(550, 180)">
+    <path d="M 0,15 L 0,0 L 15,0" class="carbon-line"/>
+    <path d="M 165,80 L 180,80 L 180,65" class="carbon-line"/>
+    <path d="M 180,15 L 180,0 L 165,0" class="carbon-line"/>
+    <path d="M 0,65 L 0,80 L 15,80" class="carbon-line"/>
+
+    <text x="90" y="34" class="label-head" text-anchor="middle">VEC FILTER</text>
+    <text x="90" y="52" class="label-tag" text-anchor="middle">UINT8 SELECTION</text>
+    <text x="90" y="66" class="label-tag" text-anchor="middle">ZERO GC MASK</text>
+  </g>
+
+  <line x1="730" y1="220" x2="800" y2="220" class="carbon-line"/>
+  <polygon points="800,220 790,215 790,225" fill="#1A1917"/>
+
+  <!-- Stage 4: Hash Aggregation -->
+  <g transform="translate(800, 180)">
+    <path d="M 0,15 L 0,0 L 15,0" class="carbon-line"/>
+    <path d="M 145,80 L 160,80 L 160,65" class="carbon-line"/>
+    <path d="M 160,15 L 160,0 L 145,0" class="carbon-line"/>
+    <path d="M 0,65 L 0,80 L 15,80" class="carbon-line"/>
+
+    <text x="80" y="34" class="label-head" text-anchor="middle">GROUP BY</text>
+    <text x="80" y="52" class="label-tag" text-anchor="middle">OPEN ADDRESSING</text>
+    <text x="80" y="66" class="label-tag" text-anchor="middle">500K / 61ms</text>
+  </g>
+
+  <!-- Pattern Cutting Seam Marks (Bottom) -->
+  <g transform="translate(50, 420)">
+    <line x1="0" y1="0" x2="900" y2="0" class="ash-line"/>
+    <text x="0" y="25" class="label-tag">ANALYTICAL SPEEDUP // 7.8x FASTER THAN ARRAY.REDUCE</text>
+    <text x="450" y="25" class="label-tag" text-anchor="middle">V8 HEAP CONTINUOUS TYPEDARRAYS</text>
+    <text x="900" y="25" class="label-tag" text-anchor="end">LOT: 2026-COL</text>
+  </g>
+</svg>

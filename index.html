@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>ColumnarJS — In-Process Columnar Analytics</title>
+  <link rel="stylesheet" href="design-tokens.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
     
     :root {
-      --bg: #080806;
-      --panel: #0c0d10;
-      --panel-hover: #121417;
-      --border: rgba(255, 255, 255, 0.08);
-      --text: #ffffff;
-      --text-muted: rgba(255, 255, 255, 0.52);
-      --text-micro: rgba(255, 255, 255, 0.28);
+      --bg: var(--bone, #F2F0EB);
+      --panel: var(--raw-white, #FFFFFF);
+      --panel-hover: #EAE8E1;
+      --border: var(--concrete, #C8C5BE);
+      --text: var(--carbon, #1A1917);
+      --text-muted: var(--ash, #8A867D);
+      --text-micro: #A8A49B;
     }
     
+    * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Space Mono', monospace;
+      font-family: 'JetBrains Mono', monospace;
       margin: 0;
       padding: 40px;
       -webkit-font-smoothing: antialiased;

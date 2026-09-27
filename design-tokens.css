@@ -1,0 +1,148 @@
+/*
+ * YEEZY × MAISON MARGIELA DESIGN SYSTEM
+ * DECONSTRUCTED INDUSTRIAL MINIMALISM
+ * SPECIFICATION · 2026
+ */
+
+:root {
+  /* PALETTE (Strict Monochrome, 0 Color Accents) */
+  --bone: #F2F0EB;          /* Main canvas background, unbleached cotton */
+  --concrete: #C8C5BE;      /* Secondary surfaces, structural dividers */
+  --carbon: #1A1917;        /* Primary typography, maximum contrast */
+  --ash: #8A867D;           /* Secondary metadata, garment care label */
+  --raw-white: #FFFFFF;     /* Pure white textile label */
+
+  /* TYPOGRAPHY */
+  --font-sans: 'Archivo', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-condensed: 'Archivo', 'Helvetica Neue Condensed', 'Arial Narrow', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+
+  /* GEOMETRY & ELEVATION */
+  --border-width: 1px;
+  --border-solid: 1px solid var(--carbon);
+  --border-muted: 1px solid var(--concrete);
+  --border-ash: 1px solid var(--ash);
+  --radius: 0px;            /* Strictly 0px, no rounded corners */
+  --shadow-stamp: 2px 2px 0px var(--carbon); /* Hard-edge offset stamp */
+  --shadow-none: none;
+}
+
+/* GLOBAL RESETS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Enforce sharp 90-degree corners */
+}
+
+body {
+  background-color: var(--bone);
+  color: var(--carbon);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* COMPRESSED UPPERCASE HEADINGS */
+h1, h2, h3, h4, .condensed-heading {
+  font-family: var(--font-condensed);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--carbon);
+  line-height: 1.1;
+}
+
+/* GARMENT CARE LABEL & MONOSPACE METADATA */
+.care-label, .meta-spec, code, pre {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--ash);
+  text-transform: uppercase;
+}
+
+/* MARGIELA NUMBERED TAG */
+.margiela-tag {
+  display: inline-block;
+  border: var(--border-solid);
+  padding: 3px 8px;
+  background: var(--raw-white);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--carbon);
+  box-shadow: var(--shadow-stamp);
+}
+
+/* INDUSTRIAL BUTTON */
+button, .btn {
+  background: var(--carbon);
+  color: var(--bone);
+  border: 1px solid var(--carbon);
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow-stamp);
+  transition: transform 0.05s ease, background 0.05s ease;
+}
+
+button:hover, .btn:hover {
+  background: var(--raw-white);
+  color: var(--carbon);
+}
+
+button:active, .btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+button.secondary, .btn-secondary {
+  background: transparent;
+  color: var(--carbon);
+}
+
+button.secondary:hover, .btn-secondary:hover {
+  background: var(--carbon);
+  color: var(--bone);
+}
+
+/* RAW DIVIDERS */
+hr, .divider {
+  border: none;
+  border-top: var(--border-muted);
+  margin: 32px 0;
+}
+
+/* OPEN BRACKET CONTAINER (Garment Pattern Cut) */
+.bracket-box {
+  position: relative;
+  padding: 24px;
+  background: transparent;
+  border: none;
+}
+
+.bracket-box::before, .bracket-box::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--carbon);
+  border-style: solid;
+}
+
+.bracket-box::before {
+  top: 0; left: 0;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.bracket-box::after {
+  bottom: 0; right: 0;
+  border-width: 0 1.5px 1.5px 0;
+}

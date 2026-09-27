@@ -1,65 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
   <defs>
     <style>
-      .mono { font-family: 'Courier New', Courier, 'JetBrains Mono', monospace; }
-      .sans { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; }
-      .tag-num { font-size: 13px; fill: #666666; letter-spacing: 4px; }
-      .tag-active { font-size: 13px; fill: #FFFFFF; font-weight: bold; }
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap');
+      .bone-bg { fill: #F2F0EB; }
+      .headline {
+        font-family: 'Archivo Black', 'Helvetica Neue', 'Arial Narrow', sans-serif;
+        font-size: 64px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        fill: #1A1917;
+      }
+      .mono-label {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
     </style>
   </defs>
 
-  <rect width="1200" height="480" fill="#0C0C0C"/>
-  <rect x="24" y="24" width="1152" height="432" fill="none" stroke="#222222" stroke-width="1"/>
+  <!-- Flat Bone Background -->
+  <rect width="1200" height="630" class="bone-bg"/>
 
-  <!-- Margiela Tag: Circle '04' -->
-  <g transform="translate(780, 60)" class="mono">
-    <text x="0" y="0" class="tag-num">0 1 2 3 <tspan class="tag-active">4</tspan> 5 6 7 8 9</text>
-    <text x="0" y="24" class="tag-num">10 11 12 13 14 15 16 17 18 19</text>
-    <text x="0" y="48" class="tag-num">20 21 22 23</text>
-    <ellipse cx="73" cy="-4" rx="12" ry="11" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>
+  <!-- Outer Architectural Framing -->
+  <rect x="60" y="60" width="1080" height="510" fill="none" stroke="#C8C5BE" stroke-width="1"/>
+
+  <!-- Tag N° 04 (Top Right) with 2px Hard Offset Stamped Shadow -->
+  <g transform="translate(880, 90)">
+    <rect x="2" y="2" width="230" height="38" fill="#1A1917"/>
+    <rect x="0" y="0" width="230" height="38" fill="#FFFFFF" stroke="#1A1917" stroke-width="1"/>
+    <text x="115" y="24" class="mono-label" font-size="11px" font-weight="700" fill="#1A1917" text-anchor="middle">N° 04 — ANALYTICS ENGINE</text>
   </g>
 
-  <g transform="translate(60, 68)" class="mono">
-    <text x="0" y="0" fill="#888888" font-size="11" letter-spacing="3">SPECIFICATION 04 // COLUMNAR ANALYTICS ENGINE</text>
-    <text x="0" y="20" fill="#555555" font-size="10" letter-spacing="2">CONTIGUOUS TYPEDARRAY BUFFERS &amp; VECTOR OPS</text>
+  <!-- Column Stratification / Pattern Cut Slabs -->
+  <g transform="translate(680, 200)">
+    <line x1="0" y1="0" x2="0" y2="200" stroke="#1A1917" stroke-width="1.5"/>
+    <line x1="70" y1="0" x2="70" y2="200" stroke="#1A1917" stroke-width="1.5"/>
+    <line x1="140" y1="0" x2="140" y2="200" stroke="#1A1917" stroke-width="1.5"/>
+    <line x1="210" y1="0" x2="210" y2="200" stroke="#1A1917" stroke-width="1.5"/>
+    <line x1="280" y1="0" x2="280" y2="200" stroke="#1A1917" stroke-width="1.5"/>
+    <line x1="350" y1="0" x2="350" y2="200" stroke="#1A1917" stroke-width="1.5"/>
+
+    <line x1="0" y1="50" x2="350" y2="50" stroke="#8A867D" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="0" y1="100" x2="350" y2="100" stroke="#8A867D" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="0" y1="150" x2="350" y2="150" stroke="#8A867D" stroke-width="1" stroke-dasharray="4,4"/>
+
+    <circle cx="0" cy="50" r="3" fill="#1A1917"/>
+    <circle cx="70" cy="100" r="3" fill="#1A1917"/>
+    <circle cx="140" cy="50" r="3" fill="#1A1917"/>
+    <circle cx="210" cy="150" r="3" fill="#1A1917"/>
+    <circle cx="280" cy="100" r="3" fill="#1A1917"/>
+    <circle cx="350" cy="150" r="3" fill="#1A1917"/>
   </g>
 
-  <g transform="translate(60, 160)">
-    <text x="0" y="0" fill="#F0F0ED" class="sans" font-size="44" font-weight="700" letter-spacing="2">COLUMNARJS</text>
-    <text x="0" y="32" fill="#777777" class="mono" font-size="13" letter-spacing="4">IN-PROCESS TYPEDARRAY COLUMNAR ENGINE</text>
+  <!-- Asymmetric Left-Aligned Headline & Margiela Naming -->
+  <g transform="translate(100, 260)">
+    <text x="0" y="0" class="mono-label" font-size="13px" font-weight="700" fill="#8A867D">N° 04 — COLUMNAR ANALYTICS</text>
+    <text x="0" y="60" class="headline">COLUMNAR — JS</text>
+    
+    <!-- Fabric Spec Subtext -->
+    <text x="0" y="110" class="mono-label" font-size="12px" fill="#8A867D">
+      IN-PROCESS TYPEDARRAY STORAGE &nbsp;·&nbsp; DICTIONARY POOL &nbsp;·&nbsp; VECTOR OPS
+    </text>
   </g>
 
-  <line x1="60" y1="230" x2="1140" y2="230" stroke="#222222" stroke-width="1"/>
-
-  <g transform="translate(60, 275)" class="mono" font-size="12">
-    <g transform="translate(0, 0)">
-      <text x="0" y="0" fill="#555555">500K GROUP BY</text>
-      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">61.0 ms</text>
-      <text x="0" y="52" fill="#888888" font-size="11">7.8x FASTER THAN REDUCE</text>
-    </g>
-
-    <g transform="translate(300, 0)">
-      <text x="0" y="0" fill="#555555">MEMORY LAYOUT</text>
-      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">FLOAT64</text>
-      <text x="0" y="52" fill="#888888" font-size="11">CONTIGUOUS TYPEDARRAYS</text>
-    </g>
-
-    <g transform="translate(600, 0)">
-      <text x="0" y="0" fill="#555555">STRING ENCODING</text>
-      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">UINT32</text>
-      <text x="0" y="52" fill="#888888" font-size="11">DICTIONARY STRING POOL</text>
-    </g>
-
-    <g transform="translate(880, 0)">
-      <text x="0" y="0" fill="#555555">DEPENDENCIES</text>
-      <text x="0" y="30" fill="#FFFFFF" class="sans" font-size="28" font-weight="700">NONE (0)</text>
-      <text x="0" y="52" fill="#888888" font-size="11">IN-PROCESS V8 ENGINE</text>
-    </g>
-  </g>
-
-  <g transform="translate(60, 424)" class="mono" font-size="9" fill="#444444" letter-spacing="2">
-    <text x="0" y="0">MODULE: ENGINE/COLUMN-STORE.JS</text>
-    <text x="450" y="0">ALGORITHM: BITMASK FILTER + HASH AGG</text>
-    <text x="880" y="0">VERIFIED: 28/28 PASS</text>
+  <!-- Bottom Specification Footer -->
+  <g transform="translate(100, 520)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#C8C5BE" stroke-width="1"/>
+    <text x="0" y="25" class="mono-label" font-size="10px" fill="#8A867D">
+      PERFORMANCE: 500K ROWS IN 61ms &nbsp;·&nbsp; 7.8x FASTER &nbsp;·&nbsp; 0 DEPENDENCIES
+    </text>
+    <text x="1000" y="25" class="mono-label" font-size="10px" fill="#8A867D" text-anchor="end">
+      TESTS: 28/28 PASS
+    </text>
   </g>
 </svg>
