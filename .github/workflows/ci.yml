@@ -8,9 +8,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: |
-          if [ -f "package.json" ]; then
-            npm test || node tests/*.js || node test.js || true
-          else
-            node tests/*.js || true
-          fi
+      - run: npm test
